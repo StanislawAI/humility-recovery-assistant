@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY!)
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY || '')
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,6 +19,13 @@ export async function POST(request: NextRequest) {
 
     if (!question) {
       return NextResponse.json({ error: 'Question is required' }, { status: 400 })
+    }
+
+    if (!process.env.GOOGLE_AI_API_KEY) {
+      return NextResponse.json({
+        error: 'AI advisor is not configured. Please contact support.',
+        response: 'I apologize, but the AI advisor service is currently unavailable. Please try again later or contact support for assistance.'
+      }, { status: 503 })
     }
 
     // Get user's recent context (last 7 days of entries and VIA scores)
