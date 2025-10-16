@@ -29,7 +29,7 @@ export default function LoginPage() {
       if (error) {
         setMessage(error.message)
       } else {
-        window.location.href = '/'
+        window.location.href = '/dashboard'
       }
     } catch {
       setMessage('An unexpected error occurred')

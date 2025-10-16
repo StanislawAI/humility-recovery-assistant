@@ -10,17 +10,17 @@ export function DashboardNav() {
 
   const navItems = [
     {
-      href: '/',
+      href: '/dashboard',
       label: 'Today',
       icon: Home,
     },
     {
-      href: '/history',
+      href: '/dashboard/history',
       label: 'History',
       icon: History,
     },
     {
-      href: '/insights',
+      href: '/dashboard/insights',
       label: 'Insights',
       icon: BarChart3,
     },
@@ -30,7 +30,9 @@ export function DashboardNav() {
     <nav className="flex space-x-4">
       {navItems.map((item) => {
         const Icon = item.icon
-        const isActive = pathname === item.href
+        const isActive =
+          pathname === item.href ||
+          (item.href !== '/dashboard' && pathname?.startsWith(`${item.href}/`))
         
         return (
           <Link key={item.href} href={item.href}>
