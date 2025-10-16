@@ -1,5 +1,5 @@
 {
   "env": {
-    "GOOGLE_AI_API_KEY": "@google-ai-api-key"
+    "GOOGLE_AI_API_KEY": "GOOGLE_AI_API_KEY"
   }
 }

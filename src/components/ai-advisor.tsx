@@ -84,7 +84,7 @@ export function AIAdvisor() {
   }
 
   return (
-    <Card className="h-[600px] flex flex-col">
+    <Card className="flex flex-col">
       <CardHeader className="flex-shrink-0">
         <CardTitle className="flex items-center gap-2">
           <MessageCircle className="h-5 w-5" />
