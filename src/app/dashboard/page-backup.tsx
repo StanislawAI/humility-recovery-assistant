@@ -60,9 +60,9 @@ size="lg"
 
       {/* Removed debug banner */}
 
-      <EmergencyCard />
-
       <AIAdvisor />
+
+      <EmergencyCard />
 
 <div className="grid gap-8 lg:grid-cols-2">
   <div className="space-y-8">
