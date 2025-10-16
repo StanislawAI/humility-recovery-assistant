@@ -11,6 +11,7 @@ import { IfThenPlans } from '@/components/if-then-plans'
 import { ExercisesList } from '@/components/exercises-list'
 import { TriggersTracker } from '@/components/triggers-tracker'
 import { ServiceRoster } from '@/components/service-roster'
+import { AIAdvisor } from '@/components/ai-advisor'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
@@ -60,6 +61,8 @@ size="lg"
       {/* Removed debug banner */}
 
       <EmergencyCard />
+
+      <AIAdvisor />
 
 <div className="grid gap-8 lg:grid-cols-2">
   <div className="space-y-8">
@@ -140,8 +143,8 @@ size="lg"
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
-        <TriggersTracker />
-        <ServiceRoster />
+      <TriggersTracker />
+      <ServiceRoster />
       </div>
 
       <CravingModal open={showCravingModal} onOpenChange={setShowCravingModal} />
