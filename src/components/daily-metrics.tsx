@@ -89,7 +89,8 @@ export function DailyMetrics() {
     const currentValue = metrics[key as keyof DailyMetricsType] || 0
     const maxValue = key === 'sleep' ? 12 : 10
     const step = key === 'sleep' ? 0.5 : 1
-    const newValue = Math.min(currentValue + step, maxValue)
+    const numericValue = typeof currentValue === 'number' ? currentValue : Number(currentValue) || 0
+    const newValue = Math.min(numericValue + step, maxValue)
 
     updateMetric(key, newValue.toString())
   }
@@ -99,7 +100,9 @@ export function DailyMetrics() {
     if (!metric || !metrics) return
 
     const currentValue = metrics[key as keyof DailyMetricsType] || 0
-    const newValue = Math.max(currentValue - (key === 'sleep' ? 0.5 : 1), 0)
+    const numericValue = typeof currentValue === 'number' ? currentValue : Number(currentValue) || 0
+    const step = key === 'sleep' ? 0.5 : 1
+    const newValue = Math.max(numericValue - step, 0)
 
     updateMetric(key, newValue.toString())
   }
@@ -129,7 +132,8 @@ export function DailyMetrics() {
       </CardHeader>
       <CardContent className="space-y-6">
       {METRICS.map((metric) => {
-      const value = metrics?.[metric.key as keyof DailyMetricsType] || 0
+      const rawValue = metrics?.[metric.key as keyof DailyMetricsType] || 0
+      const value = typeof rawValue === 'number' ? rawValue : Number(rawValue) || 0
       const maxValue = metric.key === 'sleep' ? 12 : 10
       const progressValue = (value / maxValue) * 100
 
