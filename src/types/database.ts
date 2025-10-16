@@ -458,6 +458,82 @@ export interface Database {
                     created_at?: string
                 }
             }
+            monthly_reviews: {
+                Row: {
+                    id: string
+                    user_id: string
+                    month: string
+                    reflections: string | null
+                    growth_areas: string | null
+                    gratitude_highlights: string | null
+                    challenges_overcome: string | null
+                    goals_next_month: string | null
+                    created_at: string
+                    updated_at: string
+                }
+                Insert: {
+                    id?: string
+                    user_id: string
+                    month: string
+                    reflections?: string | null
+                    growth_areas?: string | null
+                    gratitude_highlights?: string | null
+                    challenges_overcome?: string | null
+                    goals_next_month?: string | null
+                    created_at?: string
+                    updated_at?: string
+                }
+                Update: {
+                    id?: string
+                    user_id?: string
+                    month?: string
+                    reflections?: string | null
+                    growth_areas?: string | null
+                    gratitude_highlights?: string | null
+                    challenges_overcome?: string | null
+                    goals_next_month?: string | null
+                    created_at?: string
+                    updated_at?: string
+                }
+            }
+            service_roster: {
+                Row: {
+                    id: string
+                    user_id: string
+                    name: string
+                    role_type: string
+                    contact: string | null
+                    schedule: string | null
+                    notes: string | null
+                    active: boolean
+                    created_at: string
+                    updated_at: string
+                }
+                Insert: {
+                    id?: string
+                    user_id: string
+                    name: string
+                    role_type: string
+                    contact?: string | null
+                    schedule?: string | null
+                    notes?: string | null
+                    active?: boolean
+                    created_at?: string
+                    updated_at?: string
+                }
+                Update: {
+                    id?: string
+                    user_id?: string
+                    name?: string
+                    role_type?: string
+                    contact?: string | null
+                    schedule?: string | null
+                    notes?: string | null
+                    active?: boolean
+                    created_at?: string
+                    updated_at?: string
+                }
+            }
         }
     }
 }
@@ -477,4 +553,4 @@ export type ViaClassification = Database['public']['Tables']['via_classification
 export type WeeklyReview = Database['public']['Tables']['weekly_reviews']['Row']
 export type MonthlyReview = Database["public"]["Tables"]["monthly_reviews"]["Row"]
 export type GratitudeEntry = Database['public']['Tables']['gratitude_entries']['Row']
-
+export type ServiceRoster = Database['public']['Tables']['service_roster']['Row']
