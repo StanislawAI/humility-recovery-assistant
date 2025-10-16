@@ -1,0 +1,252 @@
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(transparent 0 87%, rgba(148, 163, 184, 0.08) 88%, transparent 89%),
+    linear-gradient(90deg, transparent 0 87%, rgba(148, 163, 184, 0.08) 88%, transparent 89%);
+  background-size: 140px 140px;
+  opacity: 0.18;
+  mix-blend-mode: lighten;
+  z-index: 0;
+}
+
+.aurora {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(140px);
+  opacity: 0.85;
+  mix-blend-mode: screen;
+}
+
+.auroraOne {
+  top: -20%;
+  left: -12%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle at 30% 30%, rgba(244, 114, 182, 0.65), transparent 65%);
+  animation: drift 26s linear infinite;
+}
+
+.auroraTwo {
+  bottom: -18%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle at 70% 70%, rgba(56, 189, 248, 0.6), transparent 65%);
+  animation: drift 32s linear infinite reverse;
+}
+
+.auroraThree {
+  top: 45%;
+  left: 45%;
+  width: 48vw;
+  height: 48vw;
+  background: radial-gradient(circle at 40% 60%, rgba(110, 231, 183, 0.45), transparent 70%);
+  animation: drift 38s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(-6%, -4%, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(4%, 6%, 0) rotate(28deg);
+  }
+  100% {
+    transform: translate3d(-6%, -4%, 0) rotate(0deg);
+  }
+}
+
+.floatingOrb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(148, 163, 184, 0.08) 60%, transparent 70%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 28px 95px rgba(99, 102, 241, 0.25);
+  animation: float 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.orbOne {
+  top: 18%;
+  right: 18%;
+  width: 220px;
+  height: 220px;
+  animation-delay: -6s;
+}
+
+.orbTwo {
+  bottom: 16%;
+  left: 12%;
+  width: 180px;
+  height: 180px;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+.ctaGlow {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(120deg, #f97316, #f472b6, #60a5fa);
+  box-shadow: 0 20px 45px rgba(246, 114, 128, 0.35);
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.ctaGlow span {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.6), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: screen;
+}
+
+.ctaGlow:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 24px 60px rgba(246, 114, 128, 0.45);
+}
+
+.ctaGlow:hover span {
+  opacity: 0.85;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: -120%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+  transform: translateX(-110%);
+  animation: shine 7s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-120%);
+  }
+  50% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.gradientBorder {
+  position: relative;
+  border-radius: 28px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.85), rgba(59, 130, 246, 0.7), rgba(16, 185, 129, 0.7));
+  box-shadow: 0 40px 110px rgba(59, 130, 246, 0.22);
+}
+
+.gradientBorderInner {
+  border-radius: 26.5px;
+  background: rgba(2, 6, 23, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.glassGlow {
+  position: relative;
+  overflow: hidden;
+}
+
+.glassGlow::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background: conic-gradient(from 120deg, rgba(99, 102, 241, 0.3), rgba(244, 114, 182, 0.35), rgba(125, 211, 252, 0.25), rgba(16, 185, 129, 0.25), rgba(99, 102, 241, 0.3));
+  filter: blur(55px);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.glassGlow:hover::before {
+  opacity: 0.65;
+}
+
+.beam {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.45), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.glassGlow:hover .beam {
+  opacity: 0.35;
+}
+
+.gridPulse {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(transparent 0 65%, rgba(148, 163, 184, 0.15) 66%, transparent 67%),
+    linear-gradient(90deg, transparent 0 65%, rgba(148, 163, 184, 0.15) 66%, transparent 67%);
+  background-size: 120px 120px;
+  opacity: 0.12;
+  animation: pulse 10s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.marqueeShell {
+  position: relative;
+  overflow: hidden;
+}
+
+.marqueeFade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(2, 6, 23, 1), transparent 12%, transparent 88%, rgba(2, 6, 23, 1));
+  z-index: 1;
+}
+
+.marquee {
+  display: flex;
+  gap: 2.5rem;
+  animation: marquee 26s linear infinite;
+}
+
+.marqueeGroup {
+  display: flex;
+  gap: 2.5rem;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
