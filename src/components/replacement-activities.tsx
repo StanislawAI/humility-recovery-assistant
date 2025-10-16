@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -140,7 +140,7 @@ export function ReplacementActivities() {
         loadActivities()
     }
 
-    async function useActivity(activity: ReplacementActivity) {
+    const useActivity = useCallback(async (activity: ReplacementActivity) => {
         const { error } = await supabase
             .from('replacement_activities')
             .update({
@@ -156,7 +156,7 @@ export function ReplacementActivities() {
 
         toast.success(`${activity.name} logged!`)
         loadActivities()
-    }
+    }, [supabase])
 
     async function toggleActive(activity: ReplacementActivity) {
         const { error } = await supabase

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { createClient } from '@/lib/supabase/client'
-import { CheckCircle2, Circle, Play, Check, BookOpen, ListTodo } from 'lucide-react'
+import { CheckCircle2, Circle, Check, BookOpen, ListTodo } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface StepWork {

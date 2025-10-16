@@ -7,6 +7,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { createClient } from '@/lib/supabase/client'
 import { ViaClassification as ViaClassificationType } from '@/types/database'
+
+interface WeeklyDataPoint {
+    date: string
+    Purgative: number
+    Illuminative: number
+    Unitive: number
+}
+
 import { Heart, Lightbulb, Flame, TrendingUp } from 'lucide-react'
 import { toast } from 'sonner'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
@@ -101,7 +109,7 @@ const VIA_DIMENSIONS = {
 
 export function ViaClassification() {
     const [data, setData] = useState<ViaClassificationType | null>(null)
-    const [weeklyData, setWeeklyData] = useState<any[]>([])
+    const [weeklyData, setWeeklyData] = useState<WeeklyDataPoint[]>([])
     const [loading, setLoading] = useState(true)
     const [activeTab, setActiveTab] = useState('purgative')
     const supabase = createClient()
@@ -150,7 +158,7 @@ export function ViaClassification() {
             .order('date', { ascending: true })
 
         if (weekData) {
-            const chartData = weekData.map((day: any) => {
+            const chartData = weekData.map((day: ViaClassificationType & { date: string }) => {
                 const purgativeAvg = [
                     day.purgative_connection,
                     day.purgative_service,
