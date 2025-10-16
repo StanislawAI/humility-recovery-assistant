@@ -1,5 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { ViaClassification } from '@/components/via-classification'
+import { WeeklyReview } from '@/components/weekly-review'
+import { MonthlyReview } from '@/components/monthly-review'
 import { Badge } from '@/components/ui/badge'
 
 export default async function InsightsPage() {
@@ -170,6 +173,13 @@ export default async function InsightsPage() {
           </CardContent>
         </Card>
       </div>
+
+      <div className="grid gap-8 lg:grid-cols-2">
+        <ViaClassification />
+        <WeeklyReview />
+      </div>
+
+      <MonthlyReview />
     </div>
   )
 }

@@ -12,11 +12,7 @@ import { createClient } from '@/lib/supabase/client'
 import { Mic, MicOff, Send, Heart, Star, Lightbulb } from 'lucide-react'
 import { toast } from 'sonner'
 
-interface CheckInFormProps {
-  userId: string
-}
-
-export function CheckInForm({ userId }: CheckInFormProps) {
+export function CheckInForm() {
   const [isRecording, setIsRecordingState] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   
@@ -51,10 +47,16 @@ export function CheckInForm({ userId }: CheckInFormProps) {
     setIsSubmitting(true)
     
     try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        toast.error('You must be logged in')
+        return
+      }
+
       const { error } = await supabase
         .from('entries')
         .insert({
-          user_id: userId,
+          user_id: user.id,
           content: data.content,
           entry_type: data.entry_type,
         })
