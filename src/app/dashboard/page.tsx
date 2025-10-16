@@ -62,8 +62,6 @@ size="lg"
 
       <AIAdvisor />
 
-      <EmergencyCard />
-
 <div className="grid gap-8 lg:grid-cols-2">
   <div className="space-y-8">
     <Card>
@@ -146,6 +144,8 @@ size="lg"
       <TriggersTracker />
       <ServiceRoster />
       </div>
+
+      <EmergencyCard />
 
       <CravingModal open={showCravingModal} onOpenChange={setShowCravingModal} />
     </div>
