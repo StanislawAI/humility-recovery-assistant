@@ -107,28 +107,28 @@ export function DailyChecklist() {
   const totalCount = CHECKLIST_ITEMS.length + ROUTINE_ITEMS.length
 
   return (
-    <Card className="bg-neutral-900/40 border-neutral-700 text-neutral-100">
+    <Card className="bg-muted/50 border-border">
       <CardHeader>
-        <CardTitle className="text-neutral-50">Daily Checklist</CardTitle>
-        <CardDescription className="text-neutral-300">
+        <CardTitle className="text-foreground">Daily Checklist</CardTitle>
+        <CardDescription className="text-muted-foreground">
           {completedCount} of {totalCount} completed today
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <h4 className="text-sm font-medium text-neutral-200">Daily Tasks</h4>
+          <h4 className="text-sm font-medium text-foreground">Daily Tasks</h4>
           {CHECKLIST_ITEMS.map((item) => (
             <button
               key={item.key}
               onClick={() => toggleItem(item.key)}
-              className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-neutral-800 transition-colors text-left"
+              className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-muted/80 transition-colors text-left"
             >
               {checklist?.status[item.key] ? (
-                <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0" />
+                <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
               ) : (
-                <Circle className="h-5 w-5 text-neutral-500 flex-shrink-0" />
+                <Circle className="h-5 w-5 text-muted-foreground flex-shrink-0" />
               )}
-              <span className={checklist?.status[item.key] ? 'line-through text-neutral-400' : ''}>
+              <span className={checklist?.status[item.key] ? 'line-through text-muted-foreground' : 'text-foreground'}>
                 {item.label}
               </span>
             </button>
@@ -136,19 +136,19 @@ export function DailyChecklist() {
         </div>
 
         <div className="border-t pt-4 space-y-2">
-          <h4 className="text-sm font-medium text-neutral-200">Routines</h4>
+          <h4 className="text-sm font-medium text-foreground">Routines</h4>
           {ROUTINE_ITEMS.map((item) => (
             <button
               key={item.key}
               onClick={() => toggleItem(item.key)}
-              className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-neutral-800 transition-colors text-left"
+              className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-muted/80 transition-colors text-left"
             >
               {checklist?.status[item.key] ? (
-                <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0" />
+                <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
               ) : (
-                <Circle className="h-5 w-5 text-neutral-500 flex-shrink-0" />
+                <Circle className="h-5 w-5 text-muted-foreground flex-shrink-0" />
               )}
-              <span className={checklist?.status[item.key] ? 'line-through text-neutral-400' : ''}>
+              <span className={checklist?.status[item.key] ? 'line-through text-muted-foreground' : 'text-foreground'}>
                 {item.label}
               </span>
             </button>

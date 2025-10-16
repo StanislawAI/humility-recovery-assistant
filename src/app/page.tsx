@@ -1,7 +1,17 @@
-'use client'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+import LandingPage from './landing/page'
 
-import DashboardPage from './(dashboard)/page'
+export default async function HomePage() {
+  const supabase = await createClient()
 
-export default function HomePage() {
-  return <DashboardPage />
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (user) {
+    redirect('/dashboard')
+  }
+
+  return <LandingPage />
 }

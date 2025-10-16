@@ -10,17 +10,17 @@ export function DashboardNav() {
 
   const navItems = [
     {
-      href: '/',
+      href: '/dashboard',
       label: 'Today',
       icon: Home,
     },
     {
-      href: '/history',
+      href: '/dashboard/history',
       label: 'History',
       icon: History,
     },
     {
-      href: '/insights',
+      href: '/dashboard/insights',
       label: 'Insights',
       icon: BarChart3,
     },

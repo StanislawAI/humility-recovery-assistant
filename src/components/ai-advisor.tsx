@@ -85,7 +85,7 @@ export function AIAdvisor() {
 
   return (
     <Card className="h-[600px] flex flex-col">
-      <CardHeader>
+      <CardHeader className="flex-shrink-0">
         <CardTitle className="flex items-center gap-2">
           <MessageCircle className="h-5 w-5" />
           AI Recovery Advisor
@@ -95,64 +95,85 @@ export function AIAdvisor() {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="flex-1 flex flex-col gap-4 p-4">
-        <div className="flex-1 overflow-auto pr-4" ref={scrollAreaRef}>
-          <div className="space-y-4">
-            {messages.length === 0 && (
-              <div className="text-center text-muted-foreground py-8">
-                <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p>Start a conversation with your AI recovery advisor.</p>
-                <p className="text-sm mt-2">Ask about cravings, VIA principles, or daily practices.</p>
-              </div>
-            )}
-
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                    message.role === 'user'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted'
-                  }`}
-                >
-                  <p className="whitespace-pre-wrap">{message.content}</p>
-                  <p className="text-xs opacity-70 mt-1">
-                    {new Date(message.timestamp).toLocaleTimeString()}
-                  </p>
+      <CardContent className="flex-1 flex flex-col gap-4 p-4 min-h-0">
+        <div className="flex-1 overflow-hidden" ref={scrollAreaRef}>
+          <div className="h-full overflow-y-auto pr-2">
+            <div className="space-y-4 pr-2">
+              {messages.length === 0 && (
+                <div className="text-center text-muted-foreground py-8">
+                  <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                  <p>Start a conversation with your AI recovery advisor.</p>
+                  <p className="text-sm mt-2">Ask about cravings, VIA principles, or daily practices.</p>
                 </div>
-              </div>
-            ))}
+              )}
 
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-muted rounded-lg px-4 py-2 max-w-[80%]">
-                  <div className="flex items-center gap-2">
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    <span>Thinking...</span>
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[90%] rounded-lg px-4 py-3 ${
+                      message.role === 'user'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-muted'
+                    }`}
+                  >
+                    <div className={`text-sm leading-relaxed ${
+                      message.role === 'user'
+                        ? 'text-primary-foreground'
+                        : 'text-foreground'
+                    }`}>
+                      {message.content.split('\n\n').map((paragraph, index) => (
+                        <p key={index} className={`${index > 0 ? 'mt-3' : ''}`}>
+                          {paragraph.split('\n').map((line, lineIndex) => (
+                            <span key={lineIndex}>
+                              {line}
+                              {lineIndex < paragraph.split('\n').length - 1 && <br />}
+                            </span>
+                          ))}
+                        </p>
+                      ))}
+                    </div>
+                    <p className={`text-xs mt-3 ${
+                      message.role === 'user'
+                        ? 'text-primary-foreground/70'
+                        : 'text-muted-foreground'
+                    }`}>
+                      {new Date(message.timestamp).toLocaleTimeString()}
+                    </p>
                   </div>
                 </div>
-              </div>
-            )}
+              ))}
+
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-muted rounded-lg px-3 py-2 max-w-[85%]">
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span className="text-sm">Thinking...</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-shrink-0">
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask your recovery question..."
-            className="flex-1 min-h-[60px] resize-none"
+            className="flex-1 min-h-[60px] max-h-[120px] resize-none"
             disabled={isLoading}
           />
           <Button
             onClick={sendMessage}
             disabled={!input.trim() || isLoading}
             size="icon"
-            className="h-[60px] w-[60px]"
+            className="h-[60px] w-[60px] flex-shrink-0"
           >
             {isLoading ? (
               <Loader2 className="h-4 w-4 animate-spin" />

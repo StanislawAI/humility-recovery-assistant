@@ -29,6 +29,7 @@ export default function LoginPage() {
       if (error) {
         setMessage(error.message)
       } else {
+        // Use Next.js router for client-side navigation
         window.location.href = '/'
       }
     } catch {
@@ -46,7 +47,7 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=/`,
         },
       })
 

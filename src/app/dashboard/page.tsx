@@ -26,7 +26,7 @@ return (
 {...props}
 className={cn(
 props.className,
-  isToday && "bg-blue-500 text-white font-bold ring-4 ring-blue-300 ring-opacity-90 border-2 border-blue-100 shadow-xl p-1 transform scale-105 z-10"
+  isToday && "bg-primary text-primary-foreground font-bold ring-2 ring-primary/30 border border-primary/20 shadow-lg p-1 transform scale-105 z-10"
   )}
 >
   {day.date.getDate()}
@@ -42,8 +42,8 @@ return (
 <div className="space-y-8">
 <div className="flex items-start justify-between">
 <div>
-<h1 className="text-3xl font-bold text-white">Today&apos;s Journey</h1>
-<p className="text-gray-300 mt-2">
+<h1 className="text-3xl font-bold text-foreground">Today's Journey</h1>
+<p className="text-muted-foreground mt-2">
   Track your progress in growing humility today
   </p>
 </div>
@@ -78,13 +78,13 @@ size="lg"
   </CardContent>
           </Card>
 
-    <Card className="bg-neutral-900/40 border-neutral-700 text-neutral-100">
+    <Card>
     <CardHeader>
-      <CardTitle className="flex items-center gap-2 text-neutral-50">
-      <CalendarIcon className="h-5 w-5" />
-      Select Date
-      </CardTitle>
-      </CardHeader>
+    <CardTitle className="flex items-center gap-2">
+    <CalendarIcon className="h-5 w-5" />
+    Select Date
+    </CardTitle>
+    </CardHeader>
             <CardContent className="flex justify-center">
           <Calendar
           mode="single"
@@ -94,21 +94,21 @@ size="lg"
           months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
           month: "space-y-4",
           caption: "flex justify-center pt-1 relative items-center",
-          caption_label: "text-sm font-medium text-neutral-100",
+          caption_label: "text-sm font-medium",
           nav: "space-x-1 flex items-center",
-          nav_button: "h-10 w-10 bg-transparent p-0 opacity-50 hover:opacity-100 text-neutral-300 hover:text-neutral-100 rounded-full hover:bg-neutral-700",
+          nav_button: "h-10 w-10 bg-transparent p-0 opacity-50 hover:opacity-100 rounded-full",
           nav_button_previous: "absolute left-1",
           nav_button_next: "absolute right-1",
           table: "w-full border-collapse space-y-1",
           head_row: "flex",
-          head_cell: "text-neutral-400 rounded-md w-10 font-normal text-[0.8rem]",
+          head_cell: "text-muted-foreground rounded-md w-10 font-normal text-[0.8rem]",
           row: "flex w-full mt-2",
-          cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-neutral-700 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-          day: "h-10 w-10 p-0 font-normal aria-selected:opacity-100 hover:bg-neutral-700 hover:text-neutral-100 focus:bg-neutral-700 focus:text-neutral-100 rounded-full",
-          day_selected: "bg-neutral-600 text-neutral-100 hover:bg-neutral-600 hover:text-neutral-100 focus:bg-neutral-600 focus:text-neutral-100",
-          day_outside: "text-neutral-500 opacity-50",
-          day_disabled: "text-neutral-500 opacity-50",
-          day_range_middle: "aria-selected:bg-neutral-700 aria-selected:text-neutral-100",
+          cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+          day: "h-10 w-10 p-0 font-normal aria-selected:opacity-100 hover:bg-accent rounded-full",
+          day_selected: "bg-primary text-primary-foreground",
+          day_outside: "text-muted-foreground opacity-50",
+          day_disabled: "text-muted-foreground opacity-50",
+          day_range_middle: "aria-selected:bg-accent",
           day_hidden: "invisible",
           }}
           components={{
