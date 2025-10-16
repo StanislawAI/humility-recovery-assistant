@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -140,7 +140,7 @@ export function ReplacementActivities() {
         loadActivities()
     }
 
-    const useActivity = useCallback(async (activity: ReplacementActivity) => {
+    async function handleUseActivity(activity: ReplacementActivity) {
         const { error } = await supabase
             .from('replacement_activities')
             .update({
@@ -155,8 +155,13 @@ export function ReplacementActivities() {
         }
 
         toast.success(`${activity.name} logged!`)
-        loadActivities()
-    }, [supabase])
+        // Update local state optimistically instead of calling loadActivities
+        setActivities(prev => prev.map(a =>
+            a.id === activity.id
+                ? { ...a, times_used: a.times_used + 1, last_used: new Date().toISOString() }
+                : a
+        ))
+    }
 
     async function toggleActive(activity: ReplacementActivity) {
         const { error } = await supabase
@@ -290,7 +295,7 @@ export function ReplacementActivities() {
                                                 </div>
                                                 <Button
                                                     size="sm"
-                                                    onClick={() => useActivity(activity)}
+                                                    onClick={() => handleUseActivity(activity)}
                                                     className="flex-shrink-0"
                                                 >
                                                     <CheckCircle className="h-4 w-4 mr-1" />
