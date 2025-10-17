@@ -42,8 +42,8 @@ export default async function HistoryPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Entry History</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">Entry History</h1>
+        <p className="text-muted-foreground mt-2">
           Review your journey of growing in humility
         </p>
       </div>
@@ -61,7 +61,7 @@ export default async function HistoryPage() {
         <div className="space-y-8">
           {Object.entries(entriesByDate || {}).map(([date, dateEntries]) => (
             <div key={date}>
-              <h2 className="text-lg font-semibold text-gray-800 mb-4">
+              <h2 className="text-lg font-semibold text-foreground mb-4">
                 {new Date(date).toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',

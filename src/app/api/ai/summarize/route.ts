@@ -55,7 +55,7 @@ Please respond in JSON format:
   "encouragement": "Encouraging message here"
 }`
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' })
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-pro' })
     
     const result = await model.generateContent([
       {

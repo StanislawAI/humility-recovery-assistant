@@ -61,8 +61,8 @@ export default async function InsightsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Insights & Analytics</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">Insights & Analytics</h1>
+        <p className="text-muted-foreground mt-2">
           Track your progress and growth in humility
         </p>
       </div>

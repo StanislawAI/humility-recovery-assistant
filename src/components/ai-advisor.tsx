@@ -19,7 +19,33 @@ export function AIAdvisor() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingHistory, setIsLoadingHistory] = useState(true)
   const scrollAreaRef = useRef<HTMLDivElement>(null)
+
+  // Load conversation history on component mount
+  useEffect(() => {
+    const loadConversationHistory = async () => {
+      try {
+        const response = await fetch('/api/ai/conversation')
+        if (response.ok) {
+          const data = await response.json()
+          const formattedMessages: Message[] = data.messages.map((msg: any, index: number) => ({
+            id: `history-${index}`,
+            role: msg.role,
+            content: msg.content,
+            timestamp: msg.timestamp
+          }))
+          setMessages(formattedMessages)
+        }
+      } catch (error) {
+        console.error('Failed to load conversation history:', error)
+      } finally {
+        setIsLoadingHistory(false)
+      }
+    }
+
+    loadConversationHistory()
+  }, [])
 
   useEffect(() => {
     // Scroll to bottom when new messages arrive
@@ -99,7 +125,14 @@ export function AIAdvisor() {
         <div className="flex-1 overflow-hidden" ref={scrollAreaRef}>
           <div className="h-full overflow-y-auto pr-2">
             <div className="space-y-4 pr-2">
-              {messages.length === 0 && (
+              {isLoadingHistory && (
+                <div className="text-center text-muted-foreground py-8">
+                  <Loader2 className="h-8 w-8 mx-auto mb-4 animate-spin" />
+                  <p>Loading conversation history...</p>
+                </div>
+              )}
+              
+              {!isLoadingHistory && messages.length === 0 && (
                 <div className="text-center text-muted-foreground py-8">
                   <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
                   <p>Start a conversation with your AI recovery advisor.</p>
