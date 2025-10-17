@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       guideFoundation = await loadRecoveryGuide()
       // Persist current hashes so future requests can send only updates
       try {
-        const { changed, nextHashes } = await getGuideUpdates(conversation.id)
+        const { nextHashes } = await getGuideUpdates(conversation.id)
         // Even if changed includes all sections, we've already included full guide
         await saveGuideHashes(conversation.id, nextHashes)
       } catch (e) {

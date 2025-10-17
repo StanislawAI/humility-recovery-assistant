@@ -15,6 +15,12 @@ interface Message {
   timestamp: string
 }
 
+interface ConversationMessage {
+  role: string
+  content: string
+  timestamp: string
+}
+
 export function AIAdvisor() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -29,7 +35,7 @@ export function AIAdvisor() {
         const response = await fetch('/api/ai/conversation')
         if (response.ok) {
           const data = await response.json()
-          const formattedMessages: Message[] = data.messages.map((msg: any, index: number) => ({
+          const formattedMessages: Message[] = data.messages.map((msg: ConversationMessage, index: number) => ({
             id: `history-${index}`,
             role: msg.role,
             content: msg.content,
