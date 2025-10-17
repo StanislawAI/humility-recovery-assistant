@@ -1,0 +1,31 @@
+name: Lint
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint (fail on errors only)
+        run: |
+          npx eslint . -f stylish --max-warnings=0 || true
+          # Re-run and capture exit code: if there are errors, fail; warnings ignored above
+          set -e
+          ERR_COUNT=$(npx eslint . -f json | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const r=JSON.parse(d);const e=r.reduce((a,f)=>a+f.errorCount,0);console.log('ESLint errors:',e);process.exit(e?1:0)})")
+
+
