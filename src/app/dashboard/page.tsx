@@ -42,7 +42,7 @@ function CustomDayButton({ day, ...props }: CustomDayButtonProps) {
       {...props}
       className={cn(
         props.className,
-        isToday && "bg-primary text-primary-foreground font-bold ring-2 ring-primary/30 border border-primary/20 shadow-lg p-1 transform scale-105 z-10"
+        isToday && "bg-blue-600 text-white font-bold border-2 border-blue-400 shadow-xl scale-110 z-20"
       )}
     >
       {day.date.getDate()}
