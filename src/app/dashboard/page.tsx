@@ -118,7 +118,7 @@ size="lg"
           head_cell: "text-muted-foreground rounded-md w-10 font-normal text-[0.8rem]",
           row: "flex w-full mt-2",
           cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-          day: "h-10 w-10 p-0 font-normal aria-selected:opacity-100 hover:bg-accent rounded-md",
+          day: "h-10 w-10 p-0 font-normal aria-selected:opacity-100",
           day_selected: "bg-primary text-primary-foreground rounded-md",
           day_outside: "text-muted-foreground opacity-50",
           day_disabled: "text-muted-foreground opacity-50",
