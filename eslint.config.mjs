@@ -20,6 +20,28 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  // Allow CommonJS `require` in Node-only scripts
+  {
+    files: [
+      "apply-*.js",
+      "scripts/**/*.js",
+    ],
+    languageOptions: {
+      sourceType: "commonjs",
+      globals: {
+        // Node environment globals
+        process: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
+        module: "readonly",
+        require: "readonly",
+      },
+    },
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-var-requires": "off",
+    },
+  },
 ];
 
 export default eslintConfig;
