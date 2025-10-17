@@ -1,4 +1,15 @@
 # Humility Recovery Assistant
+## Production environment notes
+
+To avoid deployment outages due to environment configuration:
+
+- Configure environment variables in Vercel Project Settings → Environment Variables. Do not redefine variables in `vercel.json`.
+- Required variables:
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `GOOGLE_AI_API_KEY` (Gemini)
+- Health check: `GET /api/health` returns JSON with basic env and Supabase connectivity status.
+
 
 A modern web application for tracking your daily journey of growing in humility. Built with Next.js 15, Supabase, and AI-powered insights.
 
