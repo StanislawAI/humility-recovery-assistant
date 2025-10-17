@@ -24,7 +24,7 @@ export async function GET() {
     // Try a harmless RPC: get auth user, which should succeed (even if null)
     await supabase.auth.getUser()
     checks.SUPABASE_CONNECTIVITY = 'ok'
-  } catch (e) {
+  } catch {
     checks.SUPABASE_CONNECTIVITY = 'error'
     errors.push('Supabase connectivity failed')
   }
