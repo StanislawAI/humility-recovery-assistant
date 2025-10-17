@@ -18,19 +18,35 @@ import { Calendar } from '@/components/ui/calendar'
 import { CalendarIcon, Flame } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function CustomDayButton({ day, ...props }: any) {
+interface CustomDayButtonProps {
+  day: {
+    date: Date
+  }
+  modifiers: {
+    today?: boolean
+    selected?: boolean
+    range_start?: boolean
+    range_end?: boolean
+    range_middle?: boolean
+    focused?: boolean
+    [key: string]: boolean | undefined
+  }
+  className?: string
+  children?: React.ReactNode
+}
+
+function CustomDayButton({ day, ...props }: CustomDayButtonProps) {
   const isToday = day.date.toDateString() === new Date().toDateString()
-return (
-<Button
-{...props}
-className={cn(
-props.className,
-  isToday && "bg-primary text-primary-foreground font-bold ring-2 ring-primary/30 border border-primary/20 shadow-lg p-1 transform scale-105 z-10"
-  )}
->
-  {day.date.getDate()}
-  </Button>
+  return (
+    <Button
+      {...props}
+      className={cn(
+        props.className,
+        isToday && "bg-primary text-primary-foreground font-bold ring-2 ring-primary/30 border border-primary/20 shadow-lg p-1 transform scale-105 z-10"
+      )}
+    >
+      {day.date.getDate()}
+    </Button>
   )
 }
 
@@ -102,8 +118,8 @@ size="lg"
           head_cell: "text-muted-foreground rounded-md w-10 font-normal text-[0.8rem]",
           row: "flex w-full mt-2",
           cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-          day: "h-10 w-10 p-0 font-normal aria-selected:opacity-100 hover:bg-accent rounded-full",
-          day_selected: "bg-primary text-primary-foreground",
+          day: "h-10 w-10 p-0 font-normal aria-selected:opacity-100 hover:bg-accent rounded-md",
+          day_selected: "bg-primary text-primary-foreground rounded-md",
           day_outside: "text-muted-foreground opacity-50",
           day_disabled: "text-muted-foreground opacity-50",
           day_range_middle: "aria-selected:bg-accent",
