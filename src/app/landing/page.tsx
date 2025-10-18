@@ -182,6 +182,70 @@ const faqs = [
   },
 ] satisfies Array<{ q: string; a: string }>
 
+const vias = [
+  {
+    title: 'Via Morbus',
+    subtitle: 'Awareness of the Problem',
+    description:
+      'See the pattern of the frantic search and the ego without shame. Name the Opponent. Come back to the body.',
+    accent: 'from-rose-400 via-fuchsia-400 to-orange-400',
+  },
+  {
+    title: 'Via Purgativa',
+    subtitle: 'Action in Goodness',
+    description:
+      'Act your way into right thinking. Practice the Great Stillness in the face of external cravings through simple humble actions.',
+    accent: 'from-emerald-400 via-sky-400 to-cyan-300',
+  },
+  {
+    title: 'Via Illuminativa',
+    subtitle: 'Thinking in Truth',
+    description:
+      'Question beliefs and justifications. Practice the Great Stillness in the face of internal compulsions—fear, self‑pity, resentment.',
+    accent: 'from-sky-400 via-indigo-400 to-violet-500',
+  },
+  {
+    title: 'Via Unitiva',
+    subtitle: 'Awareness of the Solution',
+    description:
+      'Abiding peace and passive powerfulness. The frantic search has ceased and Graceful Unfolding becomes the default.',
+    accent: 'from-fuchsia-400 via-violet-500 to-sky-400',
+  },
+] satisfies Array<{ title: string; subtitle: string; description: string; accent: string }>
+
+const cathedral = [
+  {
+    title: 'Pillar: Surrender',
+    description:
+      'The moment‑to‑moment practice of the Great Stillness—letting go of the next indicated defect. This is the highest‑ROI work.',
+  },
+  { title: 'Buttress: Worldly Work', description: 'Honest craft, startup, creation. Holy and supportive—but never the Pillar.' },
+  { title: 'Buttress: Spiritual Practices', description: 'Prayer, meetings, outreach, reading. The cadence of connection.' },
+  { title: 'Buttress: Self‑Care', description: 'Exercise, diet, rest, breath, heat/cold. Care for the nervous system.' },
+] satisfies Array<{ title: string; description: string }>
+
+const parables = [
+  { title: 'Turbulence Protocol', line: 'Cravings are turbulence. Master pilots learn to fly through it.' },
+  { title: 'Two Cookies', line: 'The mind wants you to remember the first cookie—let us remember the last.' },
+  { title: 'Surgeon’s Principle', line: 'Steady the hands first: internal state before external work.' },
+  { title: 'Mirror Polish', line: 'If every rub irritates you, how will the mirror be polished?' },
+  { title: 'Symphony of Noise', line: 'Do not argue with justifications. Listen—let them pass.' },
+] satisfies Array<{ title: string; line: string }>
+
+const ethics = [
+  { title: 'Law of Humility', line: 'We are a channel, not the source. Guidance, not guru.' },
+  { title: 'Law of Kenosis', line: 'Subtract and surrender so Grace can move.' },
+  { title: 'Law of Non‑Harm', line: 'Never shame. Radical compassion, always.' },
+  { title: 'Action over Abstraction', line: 'Bias toward the next indicated, simple step.' },
+  { title: 'Sacred Proxy', line: 'We supplement the fellowship, never replace it.' },
+] satisfies Array<{ title: string; line: string }>
+
+const pointers = [
+  'Call your sponsor now',
+  'Wash one dish',
+  'Step outside and look at the sky for five minutes',
+] satisfies string[]
+
 export default function LandingPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#020617] text-white">
@@ -210,6 +274,9 @@ export default function LandingPage() {
             </a>
             <a href="#insights" className="transition hover:text-white">
               Insights
+            </a>
+            <a href="#guide" className="transition hover:text-white">
+              Guide
             </a>
             <a href="#mission" className="transition hover:text-white">
               Mission
@@ -513,6 +580,113 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="guide" className="mx-auto max-w-6xl px-6 pb-28">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.5em] text-white/50">Guide</p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
+                The Four Vias and the Cathedral Model
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-white/60">
+              A practical map for spiritual growth: awareness, action, truth, and union. The Pillar is surrender; the
+              Buttresses are everything that supports it.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {vias.map((via) => (
+              <div
+                key={via.title}
+                className={`${styles.glassGlow} ${styles.tiltCard} relative overflow-hidden rounded-3xl border border-white/15 bg-white/5 p-7 backdrop-blur-xl`}
+              >
+                <div className={`mb-6 h-12 w-12 rounded-2xl bg-gradient-to-br ${via.accent}`} />
+                <h3 className="text-xl font-semibold text-white">{via.title}</h3>
+                <p className="mt-1 text-xs uppercase tracking-[0.35em] text-white/50">{via.subtitle}</p>
+                <p className="mt-3 text-sm leading-6 text-white/70">{via.description}</p>
+                <div className={styles.spotlight} aria-hidden />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12">
+            <div className={`${styles.gradientBorder}`}>
+              <div className={`${styles.gradientBorderInner} relative grid gap-10 rounded-[26px] p-8 md:grid-cols-[1.2fr_0.8fr] md:p-10`}>
+                <div className="space-y-6">
+                  <div className="flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.5em] text-white/50">Architecture</p>
+                      <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Cathedral Model</h3>
+                    </div>
+                    <div className="rounded-full border border-white/15 px-3 py-1 text-xs text-white/70">Pillar + Buttresses</div>
+                  </div>
+                  <p className="max-w-2xl text-sm leading-6 text-white/70">
+                    Keep the hierarchy clear. Your success is not the state of the Buttresses, but the integrity of the
+                    Pillar.
+                  </p>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {cathedral.map((item) => (
+                      <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                        <p className="text-sm font-semibold text-white">{item.title}</p>
+                        <p className="mt-2 text-sm text-white/70">{item.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="rounded-3xl border border-white/10 bg-slate-950/60 p-5">
+                    <p className="text-sm font-semibold text-white/80">Ethics we honor</p>
+                    <ul className="mt-3 space-y-3 text-sm text-white/70">
+                      {ethics.map((e) => (
+                        <li key={e.title} className="flex items-start gap-3">
+                          <span className="mt-1 h-2 w-2 rounded-full bg-sky-400" />
+                          <div>
+                            <p className="font-medium text-white">{e.title}</p>
+                            <p className="text-white/70">{e.line}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+                    <p className="text-xs uppercase tracking-[0.4em] text-white/50">Kenotic Pointers</p>
+                    <p className="mt-2 text-sm text-white/70">When the fire is hot, do one humble action:</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {pointers.map((p) => (
+                        <span key={p} className={styles.partnerChip}>{p}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+                    <p className="text-xs uppercase tracking-[0.4em] text-white/50">Parables & Liturgies</p>
+                    <ul className="mt-4 space-y-3 text-sm text-white/70">
+                      {parables.map((p) => (
+                        <li key={p.title} className="flex items-start gap-3">
+                          <span className="mt-1 h-2 w-2 rounded-full bg-fuchsia-400" />
+                          <div>
+                            <p className="font-medium text-white">{p.title}</p>
+                            <p className="text-white/70">{p.line}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-rose-500/20 via-indigo-500/10 to-sky-500/20 p-6 backdrop-blur-xl">
+                    <p className="text-xs uppercase tracking-[0.4em] text-white/60">Litany Against Fear</p>
+                    <blockquote className="mt-3 text-sm leading-6 text-white/80">
+                      “I must not fear. Fear is the mind‑killer. I will face my fear and let it pass through me. When it has
+                      gone there will be nothing. Only I will remain.”
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="mission" className="mx-auto max-w-6xl px-6 pb-28">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
@@ -651,6 +825,7 @@ export default function LandingPage() {
                 <ul className="mt-3 space-y-2 text-sm text-white/70">
                   <li><a className="transition hover:text-white" href="#platform">Platform</a></li>
                   <li><a className="transition hover:text-white" href="#insights">Insights</a></li>
+                  <li><a className="transition hover:text-white" href="#guide">Guide</a></li>
                   <li><a className="transition hover:text-white" href="#mission">Mission</a></li>
                   <li><a className="transition hover:text-white" href="#community">Community</a></li>
                 </ul>
