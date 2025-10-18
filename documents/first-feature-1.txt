@@ -1,0 +1,85 @@
+
+
+The V1 app is a focused, tactical toolkit for the ""soldier."" The UI will be stark, simple, and centered around these three core feature sets.
+Feature Group 1: ""The Crucible Protocol"" (Emergency Support)
+This is the ""red button"" for when the storm of obsession is at its peak. It is the most prominent feature on the dashboard.
+1.1: The ""15-Minute Covenant"" Timer:
+Description: A large, unmissable button labeled ""BEGIN THE CRUCIBLE."" When pressed, the user is asked to make a simple, solemn vow: ""I commit to delaying any action for 15 minutes."" Upon acceptance, a 15-minute, non-cancellable timer begins, and the app enters a locked, full-screen ""Crucible Mode.""
+User Story: ""When I am overwhelmed by obsession, I want to commit to a short, finite period of delay, so that I have a clear, manageable goal to hold onto.""
+Technical Notes: This is the core ""delay"" mechanism. The UI must be designed to feel like a sacred, unbreakable commitment.
+1.2: The Tactical Action Sequencer:
+Description: During the 15-minute Covenant, the AI Oracle delivers a sequence of simple, one-sentence commands, one at a time. The user must manually check off each command to receive the next.
+Example Sequence:
+""Stand up. Walk to the kitchen. Now.""
+""Drink one full glass of cold water. Now.""
+""Go outside for 60 seconds. Feel the air. Now.""
+""Open your phone contacts. Find your Sponsor. Now.""
+""Press the call button. Now.""
+User Story: ""When my mind is racing, I want a clear, external voice to tell me exactly what to do, so I can bypass my own compromised thinking.""
+Technical Notes: The action library will be pre-defined and customizable by the user during their ""Warm"" state. Actions must be physical, simple, and break the user's current environmental and mental loop.
+1.3: The Litany of Endurance:
+Description: Displayed in large, clear text during the Crucible, and optionally read by the Oracle's voice, is the refined Litany of Surrender.
+Text: ""I must not surrender to obsession. Obsession is the mind-killer. I will face my obsession and I will permit it to pass over me and through me. My mind is telling me this makes sense. It is a liar. The justification is not real. Only this moment is real. Where the obsession has gone there will be nothing. Only I will remain.""
+User Story: ""While I am enduring the craving, I want to be reminded of the truth of the situation, so that I can re-frame my experience from one of suffering to one of endurance."""
+
+
+
+
+
+1.1 The Entry Point: The ""Red Button""
+UI Element: A single, prominent, unmissable button on the main dashboard. It should be visually distinct from all other UI elements.
+Label: ""EMERGENCY: BEGIN CRUCIBLE""
+Styling: A deep, solid red (#B91C1C) that subtly pulses, mimicking a slow heartbeat. This serves as a visual affordance that this is the primary ""action"" button for a crisis. It should not be a jarring, alarming pulse, but a slow, steady, reassuring one.
+Location: Fixed position, probably position: fixed; bottom: 20px; right: 20px; or centered at the bottom of the viewport, ensuring it is always accessible, even on scroll.
+
+1.2 The Vow Screen: The ""15-Minute Covenant""
+Trigger: User taps the ""BEGIN CRUCIBLE"" button.
+UI/UX: The app immediately transitions to a full-screen, modal view. All other navigation and UI elements disappear. This is a one-way gate.
+Background: A dark, calming, near-black (#111827).
+Text: A single, large, centered sentence in a serene, serif font (e.g., Liberation Serif).
+Header: ""The Covenant""
+Body: ""I promise myself, and I promise God, that I will not act on my obsession for the next 15 minutes. My only goal is to endure. My only task is to delay.""
+Action: A single, large button below the text.
+Label: ""I Agree. Begin the 15 Minutes.""
+Interaction: Upon tap, the button provides strong haptic feedback (if on a mobile device) to confirm the commitment. There is no ""cancel"" or ""back"" button on this screen. The only way forward is through commitment.
+
+1.3 The Crucible Mode: The Main Loop
+Trigger: User taps ""I Agree.""
+UI/UX: The screen transitions to the main Crucible interface. This is the core of the feature.
+Layout: A single-view, full-screen interface with three components, designed for zero cognitive load.
+1.3.1 Component A: The Countdown Timer (The Anchor)
+Display: A large, prominent, and visually clear countdown timer, starting from 15:00. It should be the central visual anchor of the screen.
+Styling: Use a monospace font for the numbers to prevent visual jitter as they change. The color should be calm but visible (e.g., a soft white or grey).
+Behavior: It counts down second by second. There is no pause, skip, or cancel functionality. This visualizes the core principle: the ultimate tool is time.
+1.3.2 Component B: The Litany of Endurance (The Mantra)
+Display: Directly below the timer, the Litany text is displayed.
+Text (Final Version):
+I must not surrender to obsession.
+Obsession is the mind-killer.
+I will face my obsession. I will permit it to pass over me and through me.
+Where the obsession has gone, there will be nothing.
+Only I will remain.
+Interaction (Optional v1.1): An audio toggle to have the Oracle's calm, steady voice recite the litany on a slow loop. The audio should be processed to sound non-robotic, with a cadence that is reassuring and hypnotic.
+1.3.3 Component C: The Tactical Action Sequencer (The Engine)
+Display: At the bottom of the screen, a single, clear, actionable command is displayed.
+Data Source: The sequence of actions is pulled from the user's pre-defined ""If-Then Liturgy"" that most closely matches the trigger for this session (if tagged) or from a default ""Emergency"" sequence. In the V1 ""Wizard of Oz"" model, this command is pushed in real-time from the ""Sacred Proxy"" human council.
+Interaction Flow: This is a step-by-step, blocking sequence.
+The first command appears (e.g., ""Stand up. Walk to the kitchen."").
+Next to the command is a single, large checkbox or a ""Done"" button.
+The user must physically perform the action and then tap the button.
+Upon tapping ""Done,"" the command is replaced by the next command in the sequence (e.g., ""Drink one full glass of cold water."").
+This continues until the sequence is complete or the 15-minute timer runs out.
+Technical Notes for the Coding Assistant:
+The state of the current action step needs to be managed (currentStepIndex).
+The action list is an array of strings: const actions = [""Stand up."", ""Walk to the kitchen."", ...];
+The ""Done"" button onClick handler will increment currentStepIndex and re-render the component to show actions[currentStepIndex].
+The UI should prevent the user from seeing future steps to minimize overwhelm. They only ever see the next indicated thing.
+
+1.4 The Exit: The Victory Screen
+Trigger: The 15-minute timer reaches 00:00.
+UI/UX: The Crucible Mode screen fades out and is replaced by a simple, clean ""Victory"" screen.
+Background: A slightly lighter, warmer color to signify the passing of the storm.
+Header: ""Victory.""
+Body Text: ""The storm has passed. You held the line for 15 minutes. You did not surrender. This is a breakthrough. Take a moment to feel the peace you have earned.""
+Action: A single button labeled ""Log this Victory.""
+Interaction: Tapping this button will navigate the user to the ""Victory Ledger"" feature (Feature Group 3) to complete the ""After-Action Report.""

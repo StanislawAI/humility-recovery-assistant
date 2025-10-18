@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Home, History, BarChart3 } from 'lucide-react'
+import { Home, History, BarChart3, Flame } from 'lucide-react'
 
 export function DashboardNav() {
   const pathname = usePathname()
@@ -13,6 +13,11 @@ export function DashboardNav() {
       href: '/dashboard',
       label: 'Today',
       icon: Home,
+    },
+    {
+      href: '/dashboard/crucible',
+      label: 'Crucible',
+      icon: Flame,
     },
     {
       href: '/dashboard/history',
@@ -47,5 +52,3 @@ export function DashboardNav() {
     </nav>
   )
 }
-
-
