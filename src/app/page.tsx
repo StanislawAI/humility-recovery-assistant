@@ -8,9 +8,11 @@ export default async function HomePage() {
     data: { user },
   } = await supabase.auth.getUser()
 
+  // If user is authenticated, go to dashboard
   if (user) {
     redirect('/dashboard')
   }
 
-  redirect('/login')
+  // If not authenticated, show password protection first
+  redirect('/password-protection')
 }

@@ -254,9 +254,8 @@ export default async function LandingPage() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (!user) {
-    redirect('/login')
-  }
+  // If user is authenticated, they can access the landing page
+  // If not authenticated, they can still view the landing page (no redirect to login)
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#020617] text-white">
