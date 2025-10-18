@@ -14,7 +14,6 @@ import {
 } from 'lucide-react'
 
 import styles from './page.module.css'
-import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 const heroPills = [
@@ -249,13 +248,8 @@ const pointers = [
 ] satisfies string[]
 
 export default async function LandingPage() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  // If user is authenticated, they can access the landing page
-  // If not authenticated, they can still view the landing page (no redirect to login)
+  // Landing page is now accessible without authentication
+  // Users can view the page after password protection
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#020617] text-white">
