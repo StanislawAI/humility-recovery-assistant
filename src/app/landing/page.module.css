@@ -250,3 +250,111 @@
     transform: translateX(-50%);
   }
 }
+
+/* Section divider line with soft glow */
+.sectionDivider {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.35), transparent);
+}
+.sectionDivider::after {
+  content: "";
+  position: absolute;
+  inset: 0 -20%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.25), transparent 65%);
+  filter: blur(6px);
+  opacity: 0.6;
+}
+
+/* Interactive tilt card effect */
+.tiltCard {
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.tiltCard:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px);
+  box-shadow: 0 28px 80px rgba(56, 189, 248, 0.25);
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Soft spotlight overlay for cards */
+.spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(800px 400px at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.08), transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.tiltCard:hover .spotlight { opacity: 1; }
+
+/* FAQ styles */
+.faqList {
+  display: grid;
+  gap: 0.75rem;
+}
+.faqItem {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+.faqSummary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.faqSummary::-webkit-details-marker { display: none; }
+.faqQuestion {
+  font-weight: 600;
+  color: white;
+}
+.faqChevron {
+  transition: transform 0.35s ease;
+  color: rgba(255, 255, 255, 0.65);
+}
+.faqItem[open] .faqChevron { transform: rotate(180deg); }
+.faqContent {
+  padding: 0 1.25rem 1rem 1.25rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.75;
+}
+
+/* Partner chips */
+.partnerRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.partnerChip {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+  padding: 0.4rem 0.7rem;
+}
+
+/* Footer */
+.footerWrap {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.6), rgba(2, 6, 23, 0.9));
+}
+
+/* A11y */
+.srOnly {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
