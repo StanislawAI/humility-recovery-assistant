@@ -9,6 +9,8 @@ import {
   LineChart,
   ShieldCheck,
   Sparkles,
+  Timer,
+  PhoneCall,
 } from 'lucide-react'
 
 import styles from './page.module.css'
@@ -124,6 +126,61 @@ const ritualChannels = [
 ] satisfies Array<{ title: string; detail: string; impact: string }>
 
 const signalBands: number[] = [38, 62, 75, 92, 68, 85, 72, 96]
+
+const partnerChips = [
+  'YC alumni',
+  'Supabase ecosystem',
+  'Google AI builders',
+  'Recovery collectives',
+  'Open source ethos',
+] satisfies string[]
+
+const howItWorks = [
+  {
+    title: 'Check in in 30 seconds',
+    description:
+      'Answer a few prompts or paste a voice note transcript. We parse mood, risk, gratitude, and intent—then set your day in motion.',
+    Icon: Timer,
+    accent: 'from-fuchsia-400 via-rose-400 to-orange-400',
+  },
+  {
+    title: 'Signals become rituals',
+    description:
+      'Gemini Flash distills your signal and schedules micro-actions across body, spirit, service, and connection. Fewer decisions, more momentum.',
+    Icon: Gauge,
+    accent: 'from-sky-400 via-indigo-400 to-violet-500',
+  },
+  {
+    title: 'Sponsor loop stays warm',
+    description:
+      'Auto-generated texts, call rolls, and gratitude scans keep your circle close. When cravings spike, the human callback is minutes away.',
+    Icon: PhoneCall,
+    accent: 'from-emerald-400 via-sky-400 to-cyan-300',
+  },
+] satisfies Array<{ title: string; description: string; Icon: LucideIcon; accent: string }>
+
+const faqs = [
+  {
+    q: 'Is my data private?',
+    a: 'Yes. We use Supabase Row-Level Security to isolate every record by user. Your reflections never leave your account without your explicit action.',
+  },
+  {
+    q: 'How does AI help recovery?',
+    a: 'AI synthesizes your check-ins into summaries and suggested rituals. Think of it as a humble assistant—your plan and your people always come first.',
+  },
+  {
+    q: 'Can I invite my sponsor or team?',
+    a: 'Yes. We support accountability pods and sponsor visibility you control. Shared insights never reveal anything you do not choose to share.',
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Founding cohort pricing is flexible for individuals and teams. Request access and we will tailor a plan that honors your season and mission.',
+  },
+  {
+    q: 'Is this a medical device?',
+    a: 'No. Humility Recovery is a spiritual and behavioral support tool. It is not a medical device, nor a substitute for professional treatment.',
+  },
+] satisfies Array<{ q: string; a: string }>
 
 export default function LandingPage() {
   return (
@@ -327,6 +384,49 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="how-it-works" className="mx-auto max-w-6xl px-6 pb-28">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.5em] text-white/50">How it works</p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
+                Three simple moves that compound into serenity.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-white/60">
+              We compress friction so your plan is alive by 9am. Check in, receive rituals, and keep the human loop warm—every day, with ease.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {howItWorks.map((step, i) => (
+              <div
+                key={step.title}
+                className={`${styles.glassGlow} ${styles.tiltCard} relative overflow-hidden rounded-3xl border border-white/15 bg-white/5 p-7 backdrop-blur-xl`}
+              >
+                <div className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${step.accent} text-slate-950`}>
+                  <step.Icon className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-white">{i + 1}. {step.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/70">{step.description}</p>
+                <div className={styles.spotlight} aria-hidden />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex items-center justify-between gap-4">
+            <div className={`${styles.partnerRow}`}>
+              {partnerChips.map((chip) => (
+                <span key={chip} className={styles.partnerChip}>{chip}</span>
+              ))}
+            </div>
+            <Link href="/signup" className={`${styles.ctaGlow} rounded-full px-5 py-2.5 text-sm font-semibold text-slate-950`}>
+              Join the founding cohort
+              <ArrowUpRight className="h-4 w-4" />
+              <span aria-hidden />
+            </Link>
+          </div>
+        </section>
+
         <section id="insights" className="mx-auto max-w-6xl px-6 pb-28">
           <div className={`${styles.gradientBorder}`}>
             <div className={`${styles.gradientBorderInner} relative grid gap-10 rounded-[26px] p-8 md:grid-cols-[1.2fr_0.8fr] md:p-10`}>
@@ -475,6 +575,31 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* FAQ */}
+        <section id="faq" className="mx-auto max-w-6xl px-6 pb-28">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.5em] text-white/50">FAQ</p>
+              <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">Answers for founders and fellowship leaders</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-white/60">
+              If you have other questions, we will happily walk you through the product and our posture. Your data and dignity come first.
+            </p>
+          </div>
+
+          <div className={`${styles.faqList} mt-8`}>
+            {faqs.map((item) => (
+              <details key={item.q} className={styles.faqItem}>
+                <summary className={styles.faqSummary}>
+                  <span className={styles.faqQuestion}>{item.q}</span>
+                  <ArrowUpRight className={styles.faqChevron} />
+                </summary>
+                <div className={styles.faqContent}>{item.a}</div>
+              </details>
+            ))}
+          </div>
+        </section>
+
         <section className="pb-24">
           <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-[32px] border border-white/15 bg-gradient-to-br from-fuchsia-500/25 via-indigo-500/20 to-sky-500/25 p-[1.5px]">
             <div className="relative rounded-[30px] bg-slate-950/85 px-8 py-14 text-center backdrop-blur-3xl sm:px-16">
@@ -504,6 +629,60 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
+        <footer className={`${styles.footerWrap}`}>
+          <div className="mx-auto max-w-6xl px-6 py-12">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-fuchsia-500/80 via-violet-500/80 to-sky-400/80 text-sm font-semibold text-black">HR</div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.5em] text-white/60">Humility</p>
+                    <p className="text-sm font-medium text-white/80">Recovery Intelligence</p>
+                  </div>
+                </div>
+                <p className="max-w-xs text-sm leading-6 text-white/60">
+                  Sobriety systems that scale with grace. Built on Supabase and Gemini Flash with handcrafted UX.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-[0.4em] text-white/50">Product</p>
+                <ul className="mt-3 space-y-2 text-sm text-white/70">
+                  <li><a className="transition hover:text-white" href="#platform">Platform</a></li>
+                  <li><a className="transition hover:text-white" href="#insights">Insights</a></li>
+                  <li><a className="transition hover:text-white" href="#mission">Mission</a></li>
+                  <li><a className="transition hover:text-white" href="#community">Community</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-[0.4em] text-white/50">Company</p>
+                <ul className="mt-3 space-y-2 text-sm text-white/70">
+                  <li><a className="transition hover:text-white" href="#faq">FAQ</a></li>
+                  <li><a className="transition hover:text-white" href="#">Privacy</a></li>
+                  <li><a className="transition hover:text-white" href="#">Terms</a></li>
+                  <li><a className="transition hover:text-white" href="mailto:hello@humility.recovery">Contact</a></li>
+                </ul>
+              </div>
+
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-[0.4em] text-white/50">Get started</p>
+                <Link href="/signup" className={`${styles.ctaGlow} inline-flex rounded-full px-5 py-2.5 text-sm font-semibold text-slate-950`}>
+                  Request access
+                  <ArrowUpRight className="h-4 w-4" />
+                  <span aria-hidden />
+                </Link>
+                <p className="text-xs text-white/50">Invite-only while we onboard the founding cohort.</p>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row">
+              <p>© {new Date().getFullYear()} Humility Recovery. All rights reserved.</p>
+              <p>Built with Supabase · Next.js · Gemini Flash</p>
+            </div>
+          </div>
+        </footer>
       </div>
     </main>
   )
