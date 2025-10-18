@@ -14,6 +14,8 @@ import {
 } from 'lucide-react'
 
 import styles from './page.module.css'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
 
 const heroPills = [
   { label: 'Gemini Flash recovery copilots', Icon: Sparkles },
@@ -246,7 +248,16 @@ const pointers = [
   'Step outside and look at the sky for five minutes',
 ] satisfies string[]
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/login')
+  }
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#020617] text-white">
       <div className={styles.gridOverlay} aria-hidden />
